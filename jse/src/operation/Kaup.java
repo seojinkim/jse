@@ -28,10 +28,10 @@ public class Kaup {
 		double height = scanner.nextDouble();
 		System.out.println("몸무게 :");
 		double weight = scanner.nextDouble();
-		int index = (int)((weight / (height * height)) * 10000);
+		int index = (int) ((weight / (height * height)) * 10000);
 
 		String status;
-		if(index > 30) {
+		if (index > 30) {
 			status = "비만";
 		} else if (index > 24) {
 			status = "과체중";
