@@ -39,7 +39,7 @@ public class ReportCard {
 		case 9: case 10:
 			result2 = "장학생입니다.";
 			break;
-		case 6:case 7:case 8:
+		case 6: case 7: case 8:
 			result2 = "합격입니다.";
 			break;
 		default:
