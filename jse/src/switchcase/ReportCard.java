@@ -1,4 +1,4 @@
-package operation;
+package switchcase;
 
 import java.util.Scanner;
 
@@ -22,14 +22,31 @@ public class ReportCard {
 		int total = kor + eng + math + sci;
 		double avg = total / 4;
 		String result = name + "의 총점은 " + total + "점이고, 평균은 " + avg + "점으로";
-		if (avg >= 90.0) {
-			// 인천시 남구 매소홀로475번길 18
+		/*if (avg >= 90.0) {
 			System.out.println(result + " 장학생입니다.");
 		} else if (avg >= 60.0) {
 			System.out.println(result + " 합격입니다.");
 		} else {
 			System.out.println(result + " 불합격입니다.");
-		}
+		}*/
 		// 학생 이름, 국어, 영어, 수학, 과학 의 총점
+		
+		
+		int key = (int) (avg/10); // 지역변수의 초기화
+		String result2 = "";
+		
+		switch (key) {
+		case 9: case 10:
+			result2 = "장학생입니다.";
+			break;
+		case 6:case 7:case 8:
+			result2 = "합격입니다.";
+			break;
+		default:
+			result2 = "불합격입니다.";
+			break;
+		}
+		
+		System.out.println(result + result2);
 	}
 }
