@@ -18,12 +18,15 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public String withdraw(int money) {
-		if (account.getMoney() > money) {
-			account.setMoney(account.getMoney() - money);
-		} else {
-			System.out.println("돈 부족ㅎㅎ");
-		}
-		return account.toString();
+		//3. 출금 ALT + SHIFT + M : 메소드로 추출하는 단축키
+		return (account.getMoney() >= money) ? this.saveMoney(money) : "잔액 부족";
+	}
+
+	private String saveMoney(int money) {
+		String result;
+		account.setMoney(account.getMoney() - money);
+		result = "잔액 : " + account.getMoney();
+		return result;
 	}
 
 	@Override
