@@ -23,13 +23,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String update(MemberBean member) {
 		String result = "업데이트 실패";
-		MemberBean tmpMem = null;
 		if (memberMap.get(member.getUserId()).getPassword().equals(member.getPassword())) {
-			tmpMem = memberMap.get(member.getUserId());
-			tmpMem.setName(member.getName());
-			tmpMem.setAddr(member.getAddr());
-			tmpMem.setBirth(member.getBirth());
-			memberMap.replace(member.getUserId(), tmpMem);
+			memberMap.replace(member.getUserId(), member);
 			result = "업데이트 성공";
 		}
 		return result;
