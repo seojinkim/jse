@@ -3,6 +3,7 @@ package member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MemberServiceImpl implements MemberService {
 	Map<String, MemberBean> memberMap;
@@ -14,7 +15,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String logIn(String userId, String password) {
 		String result = "로그인 실패";
-		if (memberMap.get(userId).getPassword().equals(password)) {
+		if (password.equals(memberMap.get(userId).getPassword())) {
 			result = "로그인 성공";
 		}
 		return result;
@@ -23,8 +24,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String update(MemberBean member) {
 		String result = "업데이트 실패";
-		if (memberMap.get(member.getUserId()).getPassword().equals(member.getPassword())) {
-			memberMap.replace(member.getUserId(), member);
+		if (memberMap.containsKey(member.getUserId())) {
+			memberMap.put(member.getUserId(), member);
 			result = "업데이트 성공";
 		}
 		return result;
@@ -34,7 +35,8 @@ public class MemberServiceImpl implements MemberService {
 	public String join(MemberBean member) {
 		// 회원가입
 		String result = "회원가입 실패";
-		if (memberMap.put(member.getUserId(), member) == null) {
+		if (!memberMap.containsKey(member.getUserId())) {
+			memberMap.put(member.getUserId(), member);
 			result = "회원가입 성공";
 		}
 		return result;
@@ -51,10 +53,11 @@ public class MemberServiceImpl implements MemberService {
 		// 이름으로 회원정보 검색
 		ArrayList<MemberBean> tmpMemList = new ArrayList<MemberBean>();
 		for (String key : memberMap.keySet()) {
-			if (memberMap.get(key).getName().equals(name)) {
+			if (name.equals(memberMap.get(key).getName())) {
 				tmpMemList.add(memberMap.get(key));
 			}
 		}
+		memberMap.entrySet();
 		return tmpMemList;
 	}
 
@@ -80,11 +83,11 @@ public class MemberServiceImpl implements MemberService {
 		//이름으로 회원수 검색
 		int idx = 0;
 		for (String key : memberMap.keySet()) {
-			if (memberMap.get(key).getName().equals(name)) {
+			if (name.equals(memberMap.get(key).getName())) {
 				idx++;
 			}
 		}
-		return idx++;
+		return idx;
 	}
 
 }
